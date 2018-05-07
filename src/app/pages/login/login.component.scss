@@ -1,0 +1,90 @@
+$color-blue-dark: #0F91CD;
+$color-blue-medium: #0A9BE1;
+$color-blue-light: #05AAF5;
+$color-red-light: #C80000;
+$color-grey-light: #F0F0F0;
+$color-grey-medium: #D2D2D2;
+$color-grey-dark: #838383;
+$color-white: #FFF;
+$transition-speed: 0.5s;
+
+:host{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+h1{
+  font-family: CGB;
+  color: $color-blue-medium;
+  width: 100%;
+  text-align: center;
+  margin: 0 10px 10px 10px;
+}
+form{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+input{
+  font-family: CGB;
+  font-size: 120%;
+  color: $color-grey-medium;
+  width: 60%;
+  max-width: 360px;
+  height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: $color-blue-medium;
+  border: 5px solid $color-blue-medium;
+  margin: 10px 20%;
+  transition: all $transition-speed;
+
+  &:focus{
+      background-color: $color-blue-light;
+      color: $color-grey-light;
+      outline: none;
+    }
+}
+button{
+  cursor: pointer;
+  font-family: CGB;
+  font-size: 120%;
+  color: #FFF;
+  width: 62%;
+  max-width: 370px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: $color-blue-medium;
+  border: 5px solid $color-blue-medium;
+  margin: 10px 20%;
+
+  transition: all $transition-speed;
+
+  &:focus{
+    outline: none;
+    background-color: $color-blue-light;
+    border: 5px solid $color-blue-light;
+  }
+  &:hover{
+    background-color: $color-blue-light;
+    border: 5px solid $color-blue-light;
+  }
+  &:active{
+    color: $color-grey-light;
+    background-color: $color-blue-medium;
+    border: 5px solid $color-blue-medium;
+  }
+}
+button:disabled{
+  color: $color-grey-medium;
+  background-color: $color-blue-dark;
+  border: 5px solid $color-blue-dark;
+  cursor: default;
+}
+.error{
+  margin-top: 10px;
+  font-family: CGB;
+  color: $color-red-light;
+}

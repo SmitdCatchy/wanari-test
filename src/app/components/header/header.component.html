@@ -1,3 +1,22 @@
-<p>
-  header works!
-</p>
+<div class="dropdown {{in}}" (click)="drop()">
+  <div *ngIf="userService.user.role === 'GUEST'; else elseBlockDRPD" class="" routerLink="" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }"> <p>Login</p> </div>
+  <ng-template #elseBlockDRPD>
+    <div class="" (click)="userService.logout()"> <p>Log out</p> </div>
+    <div class="" routerLink="dashboard" routerLinkActive="" [routerLinkActiveOptions]="{ exact: true }"> <p>Dashboard</p> </div>
+  </ng-template>
+</div>
+<div id="header">
+  <div class="shadowCorrection"></div>
+  <div id="header-image"></div>
+  <div class="tabs">
+    <div *ngIf="userService.user.role === 'GUEST'; else elseBlock" class="tab" routerLink="" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }"> <p>Login</p> </div>
+    <ng-template #elseBlock>
+      <div class="tab" (click)="userService.logout()"> <p>Log out</p> </div>
+      <div class="tab" routerLink="dashboard" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }"> <p>Dashboard</p> </div>
+    </ng-template>
+  </div>
+  <div id="dropdownBtn{{in}}" class="tab" (click)="drop()">&#xf0c9;</div>
+</div>
+
+
+<div class="fader"></div>

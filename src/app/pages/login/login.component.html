@@ -1,3 +1,7 @@
-<p>
-  login works!
-</p>
+<h1>Login</h1>
+<form [formGroup]="loginForm" novalidate>
+    <input type="text" maxlength="20" class="form-control" formControlName="username" placeholder="Username" >
+    <input type="password" maxlength="20" class="form-control" formControlName="password" placeholder="Password" >
+    <button type="button" class="btn btn-default" (click)="submit()" [disabled]="!loginForm.valid">Login</button>
+</form>
+<div class="error" *ngIf=" err !== '' "> Invalid username or password </div>

@@ -24,13 +24,16 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    FlightService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
