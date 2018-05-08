@@ -8,46 +8,60 @@
 <div class="modalFrame {{modal}}">
   <div class="modal {{modal}}">
     <h2>{{airport.name}}</h2>
-    <h3>Arrivals</h3>
-    <select name="duration" [ngModel]="arrivalsDuration" (ngModelChange)="getArrivals($event)">
-      <option value="1">1</option>
-      <option value="8" selected>8</option>
-      <option value="24">24</option>
-    </select>
-    <!-- <div *ngIf="arrivals.length !== 0  ; else elseBlockArrivals"> -->
-      <div class="flights">
-        <div *ngFor="let f of arrivals">
-          <h4>ICAO24: {{f.icao24.toUpperCase()}}</h4>
-          <p>Callsign: {{f.callsign}}</p>
-          <p>First: {{formatDate(f.firstSeen)}}</p>
-          <p>Last: {{formatDate(f.lastSeen)}}</p>
-          <p>From: {{f.estDepartureAirport}}</p>
-        </div>
+    <div class="selection">
+      <h3>Arrivals</h3>
+      <select name="duration" [ngModel]="arrivalsDuration" (ngModelChange)="getArrivals($event)">
+        <option value="1">1</option>
+        <option value="8" selected>8</option>
+        <option value="24">24</option>
+      </select>
+    </div>
+    <div class="flights" *ngIf="arrivalsState === 1">
+      <div class="flight" *ngFor="let f of arrivals">
+        <h4>ICAO24: {{f.icao24}}</h4>
+        <p>Callsign: {{f.callsign}}</p>
+        <p>First: {{f.firstSeen}}</p>
+        <p>Last: {{f.lastSeen}}</p>
+        <p>Origin: {{f.origin}}</p>
       </div>
-    <!-- </div>
-    <ng-template #elseBlockArrivals>
-      <h3>Loading</h3>
-    </ng-template> -->
-    <h3>Departures</h3>
-    <select name="duration" [ngModel]="departuresDuration" (ngModelChange)="getDepartures($event)">
-      <option value="1">1</option>
-      <option value="8" selected>8</option>
-      <option value="24">24</option>
-    </select>
-    <!-- <div *ngIf="departures.length !== 0  ; else elseBlockDepartures"> -->
-      <div class="flights">
-        <div *ngFor="let f of departures">
-          <h4>ICAO24: {{f.icao24.toUpperCase()}}</h4>
-          <p>Callsign: {{f.callsign}}</p>
-          <p>First Seen: {{formatDate(f.firstSeen)}}</p>
-          <p>Last Seen: {{formatDate(f.lastSeen)}}</p>
-          <p>To: {{f.estArrivalAirport}}</p>
-        </div>
+    </div>
+    <div class="flights loading" *ngIf="arrivalsState === 0">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
       </div>
-    <!-- </div>
-    <ng-template #elseBlockDepartures>
-      <h3>Loading</h3>
-    </ng-template> -->
+    </div>
+    <div class="flights error" *ngIf="arrivalsState === -1"><h4>There is no available information.</h4></div>
+    <div class="selection">
+      <h3>Departures</h3>
+      <select name="duration" [ngModel]="departuresDuration" (ngModelChange)="getDepartures($event)">
+        <option value="1">1</option>
+        <option value="8" selected>8</option>
+        <option value="24">24</option>
+      </select>
+    </div>
+    <div class="flights" *ngIf="departuresState === 1">
+      <div class="flight" *ngFor="let f of departures">
+        <h4>ICAO24: {{f.icao24}}</h4>
+        <p>Callsign: {{f.callsign}}</p>
+        <p>First: {{f.firstSeen}}</p>
+        <p>Last: {{f.lastSeen}}</p>
+        <p>Origin: {{f.origin}}</p>
+      </div>
+    </div>
+    <div class="flights loading" *ngIf="departuresState === 0">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
+    <div class="flights error" *ngIf="departuresState === -1"><h4>There is no available information.</h4></div>
     <button type="button" class="btn btn-default" (click)="closeModal()" >Back</button>
   </div>
 </div>

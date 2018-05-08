@@ -10,6 +10,7 @@ $color-white: #FFF;
 $transition-speed: 0.5s;
 $anim-speed-medium: 0.5s;
 $anim-speed-slow: 1.0s;
+
 :host{
   display: flex;
   justify-content: center;
@@ -56,6 +57,7 @@ $anim-speed-slow: 1.0s;
     background: $color-blue-medium;
   }
 }
+
 .modalFrame{
   display: none;
   justify-content: center;
@@ -71,14 +73,16 @@ $anim-speed-slow: 1.0s;
   overflow-x: hidden;
   overflow-y: auto;
 }
+
 .modal{
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
   min-width: 240px;
+  max-width: 600px;
   width: 80%;
-  height: 520px;
+  min-height: 520px;
   padding: 20px;
   border-radius: 20px;
   background: $color-blue-medium;
@@ -89,30 +93,60 @@ $anim-speed-slow: 1.0s;
     text-align: center;
     margin: 0;
   }
-  & h3{
-    font-size: 24px;
-    width: 50%;
-    text-align: center;
-    margin: 10px;
-  }
-  & select{
-    font-size: 24px;
-    text-align: center;
-    margin: 10px;
-    background: $color-grey-dark;
-    color: $color-white;
-    outline: none;
-    border: none;
+  & .selection{
+    display: flex;
+    justify-content: center;
+
+    & h3{
+      font-size: 24px;
+      text-align: center;
+      margin: 10px;
+    }
+    & select{
+      font-size: 24px;
+      text-align: center;
+      margin: 10px;
+      background: $color-grey-dark;
+      color: $color-white;
+      outline: none;
+      border: none;
+    }
   }
   & .flights{
+    position: relative;
     height: 160px;
     width: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
-    & div{
+    resize: vertical;
+    &.loading{
+      height: 160px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: none;
+    }
+    &.error{
+      height: 160px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: none;
+      & h4{
+        font-family: CGB;
+          font-size: 24px;
+          text-align: center;
+        color: $color-grey-medium;
+      }
+    }
+    & .flight{
       background-color: $color-blue-dark;
       border-radius: 10px;
       padding: 10px;
@@ -132,6 +166,7 @@ $anim-speed-slow: 1.0s;
     }
   }
 }
+
 .closeModal{
   cursor: pointer;
   color: $color-red-light;
@@ -143,6 +178,7 @@ $anim-speed-slow: 1.0s;
     color: $color-red-bright;
   }
 }
+
 button{
   cursor: pointer;
   font-family: CGB;
@@ -195,6 +231,7 @@ button{
        -o-animation-timing-function:ease-in-out;
           animation-timing-function:ease-in-out;
 }
+
 .modal.on{
   display: flex;
   -webkit-animation: fadedown $anim-speed-medium; /* Safari, Chrome and Opera > 12.1 */
@@ -266,4 +303,57 @@ button{
   0% { transform: translateY(-40px); opacity: 0; }
   30% { transform: translateY(-40px); opacity: 0; }
   100%   { opacity: 1; }
+}
+
+.spinner {
+  width: 100px;
+  height: 50px;
+  transition: all 0.5s;
+  display: flex;
+  justify-content: space-between;
+}
+
+.spinner > div {
+  background-color: $color-grey-light;
+  height: 100%;
+  width: 15%;
+  display: inline-block;
+
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
 }
